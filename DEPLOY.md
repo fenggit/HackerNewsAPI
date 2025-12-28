@@ -22,7 +22,10 @@
    - **Build output directory**: `.next`
    - **Root directory**: `/` (项目根目录)
    - **Node.js version**: 20 (或更高版本，Next.js 16 需要 >= 20.9.0)
+   - **Deploy command**: 留空（Cloudflare Pages 会自动部署，不需要手动执行 deploy 命令）
 8. 点击 **Save and Deploy**
+
+⚠️ **重要提示**：如果配置了 Deploy command，请确保留空或删除。Cloudflare Pages 在构建完成后会自动部署，不需要手动执行 `wrangler deploy` 命令（那是用于 Workers 的，不是 Pages）。
 
 ### 方法二：使用 Wrangler CLI
 
