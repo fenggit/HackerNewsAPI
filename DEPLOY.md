@@ -10,6 +10,16 @@
 
 ### 方法一：通过 Cloudflare Dashboard
 
+#### 配置说明
+
+项目已配置支持以下命令格式：
+
+- **构建命令**: `npm run build`
+- **部署命令**: `npx wrangler deploy` 
+- **版本命令**: `npx wrangler versions upload`
+
+#### 首次创建项目
+
 1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)
 2. 进入 **Pages** 部分
 3. 点击 **Create a project**
@@ -18,14 +28,25 @@
 6. 选择你的仓库
 7. 配置构建设置：
    - **Framework preset**: Next.js
-   - **Build command**: `npm run build`
+   - **构建命令**: `npm run build`
    - **Build output directory**: `.next`
    - **Root directory**: `/` (项目根目录)
    - **Node.js version**: 20 (或更高版本，Next.js 16 需要 >= 20.9.0)
-   - **Deploy command**: 留空（Cloudflare Pages 会自动部署，不需要手动执行 deploy 命令）
-8. 点击 **Save and Deploy**
+   - **部署命令**: `node .wrangler-deploy-wrapper.js`
+   - **非生产分支部署命令**: `node .wrangler-versions-wrapper.js`（可选）
 
-⚠️ **重要提示**：如果配置了 Deploy command，请确保留空或删除。Cloudflare Pages 在构建完成后会自动部署，不需要手动执行 `wrangler deploy` 命令（那是用于 Workers 的，不是 Pages）。
+#### 工作原理
+
+项目包含包装脚本，将 Workers 命令转换为 Pages 命令：
+- `.wrangler-deploy-wrapper.js` - 将 `wrangler deploy` 转换为 `wrangler pages deploy .next --project-name=hackernews-api`
+- `.wrangler-versions-wrapper.js` - 将 `wrangler versions upload` 转换为 `wrangler pages versions upload .next --project-name=hackernews-api`
+
+**重要说明**：
+- 虽然命令格式是 `npx wrangler deploy`，但在 Cloudflare Pages 构建环境中，需要使用 `node .wrangler-deploy-wrapper.js` 来执行正确的 Pages 部署
+- 这些包装脚本会在 `npm install` 后自动设置执行权限
+- 如果你希望使用 `npx wrangler deploy` 格式，可以在本地或 CI/CD 中配置别名
+
+8. 点击 **Save and Deploy**
 
 ### 方法二：使用 Wrangler CLI
 

@@ -2,3 +2,7 @@ name = "hackernews-api"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = ".next"
 
+# 注意：对于 Cloudflare Pages，应该使用 wrangler pages deploy
+# 但为了支持 npx wrangler deploy 命令，我们配置了 pages_build_output_dir
+# 实际部署时，Cloudflare Pages 会自动处理，或者使用 npm run deploy
+
