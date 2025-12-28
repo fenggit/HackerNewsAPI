@@ -1,8 +1,12 @@
 name = "hackernews-api"
 compatibility_date = "2024-01-01"
-pages_build_output_dir = ".next"
 
-# 注意：对于 Cloudflare Pages，应该使用 wrangler pages deploy
-# 但为了支持 npx wrangler deploy 命令，我们配置了 pages_build_output_dir
-# 实际部署时，Cloudflare Pages 会自动处理，或者使用 npm run deploy
+# Cloudflare Pages 配置
+# 参考官方文档: https://developers.cloudflare.com/workers/wrangler/commands/#pages
+# 
+# 对于 Next.js 16，推荐使用 Git 集成方式部署（Cloudflare Pages 原生支持）
+# 如果使用 CLI 部署，需要先构建静态输出
+#
+# pages_build_output_dir 用于 Git 集成时的自动构建
+# 使用 wrangler pages deploy 时，需要指定正确的输出目录
 
