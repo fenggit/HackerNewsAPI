@@ -16,7 +16,7 @@
     "lint": "next lint",
     "deploy": "wrangler pages deploy .next --project-name=hackernews-api",
     "versions:upload": "wrangler pages versions upload .next --project-name=hackernews-api",
-    "postinstall": "chmod +x .wrangler-deploy-wrapper.js .wrangler-versions-wrapper.js deploy.sh versions-upload.sh 2>/dev/null || true"
+    "postinstall": "chmod +x .wrangler-deploy-wrapper.js .wrangler-versions-wrapper.js deploy.sh versions-upload.sh 2>/dev/null || true && node -e \"const fs=require('fs');const path=require('path');const binDir=path.join(__dirname,'node_modules','.bin');if(!fs.existsSync(binDir))fs.mkdirSync(binDir,{recursive:true});const wrapper=path.join(__dirname,'.wrangler-deploy-wrapper.js');const target=path.join(binDir,'wrangler');if(fs.existsSync(wrapper)){try{fs.unlinkSync(target);}catch(e){}}fs.symlinkSync(path.relative(binDir,wrapper),target,'file');\""
   },
   "dependencies": {
     "next": "^16.1.1",
