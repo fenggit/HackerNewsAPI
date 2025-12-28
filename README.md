@@ -58,7 +58,7 @@ npm run dev
 4. 构建配置：
    - 构建命令: `npm run build`
    - 输出目录: `.next`
-   - Node.js 版本: 18
+   - Node.js 版本: 20 (或更高版本，Next.js 16 需要 >= 20.9.0)
 5. 部署完成后，使用 Cloudflare 提供的默认域名访问
 
 ## 项目结构

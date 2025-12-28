@@ -21,7 +21,7 @@
    - **Build command**: `npm run build`
    - **Build output directory**: `.next`
    - **Root directory**: `/` (项目根目录)
-   - **Node.js version**: 18
+   - **Node.js version**: 20 (或更高版本，Next.js 16 需要 >= 20.9.0)
 8. 点击 **Save and Deploy**
 
 ### 方法二：使用 Wrangler CLI
